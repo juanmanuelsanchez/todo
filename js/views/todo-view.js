@@ -80,6 +80,7 @@ var app = app || {};
 		close: function () {
 			var value = this.$input.val();
 			var trimmedValue = value.trim();
+			//var doneMessage= '..done';
 
 			// We don't want to handle blur events from an item that is no
 			// longer being edited. Relying on the CSS class here has the
