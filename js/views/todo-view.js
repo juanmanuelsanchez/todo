@@ -21,6 +21,7 @@ var app = app || {};
 			'dblclick label': 'edit',
 			'click .edit-btn': 'edit',
 			'click .destroy': 'clear',
+			'click .priority-btn': 'higlight',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
 			'blur .edit': 'close'
@@ -129,6 +130,17 @@ var app = app || {};
 		// Remove the item, destroy the model from *localStorage* and delete its view.
 		clear: function () {
 			this.model.destroy();
+		},
+
+		higlight: function() {
+            
+            if (!this.$el.hasClass('priority')){
+
+			this.$el.addClass('priority');
+		   }else{
+
+		   	this.$el.removeClass('priority');
+		   }
 		}
 	});
 })(jQuery);
