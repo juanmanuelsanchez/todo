@@ -21,7 +21,7 @@ var app = app || {};
 			'dblclick label': 'edit',
 			'click .edit-btn': 'edit',
 			'click .destroy': 'clear',
-			'click .priority-btn': 'higlight',
+			'click .priority-btn': 'toogleHiglight',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
 			'blur .edit': 'close'
@@ -52,6 +52,7 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
+			this.$el.toggleClass('priority', this.model.get ('priority'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
@@ -82,7 +83,7 @@ var app = app || {};
 		close: function () {
 			var value = this.$input.val();
 			var trimmedValue = value.trim();
-			//var doneMessage= '..done';
+		
 
 			// We don't want to handle blur events from an item that is no
 			// longer being edited. Relying on the CSS class here has the
@@ -132,15 +133,10 @@ var app = app || {};
 			this.model.destroy();
 		},
 
-		higlight: function() {
-            
-            if (!this.$el.hasClass('priority')){
-
-			this.$el.addClass('priority');
-		   }else{
-
-		   	this.$el.removeClass('priority');
-		   }
+		toogleHiglight: function() {
+          
+          this.model.priority();
+        
 		}
 	});
 })(jQuery);
